@@ -26,9 +26,11 @@ const style = {
 
 function MoreInfo() {
   const API_IMG="https://image.tmdb.org/t/p/w300/"
-  const youtube=`https://www.youtube.com/watch?v=`
+
   const navigate=useNavigate()
   const[post,setpost]=useState([])
+
+  //to set video
   const[video,setvideos]=useState([])
   const[data,setdata]=useState(false)
 
@@ -49,10 +51,6 @@ function MoreInfo() {
 const opts = {
   height: '320',
   width: '330',
-  // playerVars: {
-  //   // https://developers.google.com/youtube/player_parameters
-  //   autoplay: 1,
-  // },
 };
 
   
@@ -64,7 +62,7 @@ fetchPost()
 videoFetch()
   },[])
 
-  
+  //to fetch data based on id
   const fetchPost=async()=>{
      try{
         const response=await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=84bf934f6f348e09a8de2b9b556c09ae`)
@@ -77,16 +75,29 @@ videoFetch()
      }
   }
 
+  //to fetch data for video on particualr id
   const videoFetch=async()=>{
     try{
       const response=await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=84bf934f6f348e09a8de2b9b556c09ae`)
       // console.log(response.data.results[1]);
-      setvideos(response.data.results[1])
+      setvideos(response.data.results)
+      
 
     }catch(error){
       console.log(error);
     }
   }
+console.log(video);
+let newVideo=[]
+video.forEach((val,i)=>{
+  
+  if(val.type==="Trailer"){
+    
+    newVideo.push(val)
+  }
+})
+console.log(newVideo);
+  // console.log(a);
 //  console.log(post);
 // console.log(video.key);
  return (
@@ -112,7 +123,7 @@ videoFetch()
       <Modal
         open={open}>
         <Box sx={style}>
-        <YouTube videoId={video.key} opts={opts}/>
+        <YouTube videoId={newVideo[0].key} opts={opts}/>
           <Button onClick={handleClose} variant="contained" color="secondary">close</Button>
         </Box>
       </Modal>
@@ -120,9 +131,7 @@ videoFetch()
   )
 :""}
        
-     
-    
-       <button className='btn btn-success m-2' onClick={()=>{
+ <button className='btn btn-success m-2' onClick={()=>{
        navigate("/")
        }}>Back</button>
        </div>
