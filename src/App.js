@@ -7,6 +7,7 @@ import MoreInfo from './components/MoreInfo';
 import ErrorPage from './components/ErrorPage';
 
 
+
 function App() {
  return <BrowserRouter>
 
@@ -14,7 +15,7 @@ function App() {
     <Route path="/" element={<Home/>}/>
     <Route path=":id" element={<MoreInfo/>} />  
     <Route path="/header" element={<Header/>}/>
-    <Route path="*" element={<ErrorPage/>}/>
+   <Route path="*" element={<ErrorPage/>}/>
   </Routes>
   </BrowserRouter>
 }
