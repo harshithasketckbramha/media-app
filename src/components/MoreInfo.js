@@ -1,43 +1,60 @@
 import axios from 'axios';
+import Home from './Home';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function MoreInfo() {
+  const navigate=useNavigate()
   const[post,setpost]=useState([])
+  const[data,setdata]=useState(false)
   const API_IMG="https://image.tmdb.org/t/p/w300/"
   let {id}=useParams()
     console.log(id);
-
+console.log(post);
   useEffect(()=>{
 fetchPost()
   },[])
 
+  
   const fetchPost=async(i)=>{
      try{
         const response=await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=84bf934f6f348e09a8de2b9b556c09ae`)
         // console.log(response.data.results);
-        setpost(response)
-        console.log(post);
+        setpost(response.data)
+     setdata(true)
+       
      }catch(error){
        console.log(error);
      }
   }
- 
-  return (
-<div>
-         {post.map((val,i)=>{
-        return   <div key={val.id} className='col-3 p-2  d-inline-block justify-content-md-evenly' >
-        <div className="card" >
-      <img src={API_IMG+val.poster_path} className="card-img-top " alt="poster"/>
-      <div className="card-body m-0" >
-        <p className="card-title text-monospace" >{val.adult}</p>
-    </div>
-    </div>
-    </div>
-   
-      })}
-      </div>
-  )
-}
+ console.log(post);
+ return (
+   <div>
+     {data ? (
+       <div>
+ <div className='card mb-2'style={{maxWidth:"100%"}} >
+       <div className="row no-gutters">
+       <div class="col-md-4">
+       <img src={API_IMG+post.poster_path}/>
+       </div>
+       <div className="col-md-6">
+       <div className='card-body'>
+       <h3 className="card-title">Title:{post.title}</h3>
+       <h6 className="card-text">{post.tagline}</h6>
+       <h4 className="card-text">Rating: {post.vote_average}</h4>
+       <h4>overview</h4>
+       <p className="card-text">{post.overview}</p>
+       <button className='btn btn-success' onClick={()=>{
+       navigate("/")
+       }}>Back</button>
+       </div>
+       </div>
+       </div>
+       </div>
 
+   </div>
+     ):"Loading...!!!!"}
+       </div>
+ )
+      }
 export default MoreInfo

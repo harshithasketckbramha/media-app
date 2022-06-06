@@ -10,8 +10,9 @@ const API_URL="https://api.themoviedb.org/3/movie/popular?api_key=84bf934f6f348e
 const API_IMG="https://image.tmdb.org/t/p/w300/"
 
 function Home(props) {
+  let navigate=useNavigate()
     const[movie,setMovies]=useState([])
-    let navigate=useNavigate()
+    const[load,setload]=useState(false)
    
 useEffect((props)=>{
     fetch(API_URL)
@@ -22,6 +23,7 @@ const fetch= async()=>{
         const response=await axios.get(API_URL)
         const data=response.data
         setMovies(data.results)
+        setload(true)
         
     }catch(error){
 console.log(error);
@@ -33,11 +35,13 @@ console.log(error);
   return (
     <div>
       <Header movie={movie} setMovies={setMovies}/>
-      {movie.map((val,i)=>{
-        return   <div key={val.id} className='col-3 p-2  d-inline-block justify-content-md-evenly' >
+      {load ? (
+        <div>
+          {movie.map((val,i)=>{
+        return   <div key={val.id} className='col-3 p-1  d-inline-block justify-content-md-evenly' >
         <div className="card" >
       <img src={API_IMG+val.poster_path} className="card-img-top " alt="poster"/>
-      <div className="card-body m-0" >
+      <div className="card-body" >
         <p className="card-title text-monospace" >{val.title}</p>
        <button className='btn btn-primary' onClick={()=>{
          navigate(`${val.id}`)
@@ -46,8 +50,10 @@ console.log(error);
     </div>
     </div>
       })}  
-  
     </div>
+      )
+  :"Loading...."}
+   </div>
   )
 }
 
