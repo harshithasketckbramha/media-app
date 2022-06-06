@@ -1,16 +1,27 @@
 import axios from 'axios';
 import Home from './Home';
 import React, { useEffect, useState } from 'react'
+import { css } from "@emotion/react";
 import { useNavigate, useParams } from 'react-router-dom';
+import ClipLoader from "react-spinners/ClipLoader";
 
 function MoreInfo() {
+  const API_IMG="https://image.tmdb.org/t/p/w300/"
   const navigate=useNavigate()
   const[post,setpost]=useState([])
   const[data,setdata]=useState(false)
-  const API_IMG="https://image.tmdb.org/t/p/w300/"
   let {id}=useParams()
-    console.log(id);
-console.log(post);
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+  
+`;
+  
+// console.log(id);
+// console.log(post);
+
   useEffect(()=>{
 fetchPost()
   },[])
@@ -53,7 +64,7 @@ fetchPost()
        </div>
 
    </div>
-     ):"Loading...!!!!"}
+     ):<ClipLoader color="D0021B" loading={post}  css={override} size={100} />}
        </div>
  )
       }
