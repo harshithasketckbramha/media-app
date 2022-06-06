@@ -3,26 +3,29 @@ import Home from './Home';
 import React, { useEffect, useState } from 'react'
 import { css } from "@emotion/react";
 import { useNavigate, useParams } from 'react-router-dom';
-import ClipLoader from "react-spinners/ClipLoader";
+import ClipLoader from "react-spinners/ClipLoader";  //from react-spinner
 
 function MoreInfo() {
   const API_IMG="https://image.tmdb.org/t/p/w300/"
   const navigate=useNavigate()
   const[post,setpost]=useState([])
   const[data,setdata]=useState(false)
+
+  //to get params useparams and use it where required
   let {id}=useParams()
 
+  //spinner css
   const override = css`
-  display: block;
+  display:block;
   margin: 0 auto;
-  border-color: red;
-  
+
+ 
 `;
   
 // console.log(id);
 // console.log(post);
 
-  useEffect(()=>{
+useEffect(()=>{
 fetchPost()
   },[])
 
@@ -31,7 +34,7 @@ fetchPost()
      try{
         const response=await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=84bf934f6f348e09a8de2b9b556c09ae`)
         // console.log(response.data.results);
-        setpost(response.data)
+       setpost(response.data)
      setdata(true)
        
      }catch(error){
@@ -43,7 +46,7 @@ fetchPost()
    <div>
      {data ? (
        <div>
- <div className='card mb-2'style={{maxWidth:"100%"}} >
+ <div className='card mb-2 'style={{maxHeight:"00%"}} >
        <div className="row no-gutters">
        <div class="col-md-4">
        <img src={API_IMG+post.poster_path}/>
@@ -64,7 +67,7 @@ fetchPost()
        </div>
 
    </div>
-     ):<ClipLoader color="D0021B" loading={post}  css={override} size={100} />}
+     ):<ClipLoader color="D0021B" loading={post}  css={override} size={50} />}
        </div>
  )
       }

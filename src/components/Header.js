@@ -54,11 +54,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 export default function Header(props) {
   const {movie,setMovies}=props
 const[data,setdata]=useState("")
 
+//to search movies
   const handleChange=async(e)=>{
+  //takes value 
    setdata(e.target.value)
    console.log(data);
    try{

@@ -9,13 +9,15 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 
 const API_URL="https://api.themoviedb.org/3/movie/popular?api_key=84bf934f6f348e09a8de2b9b556c09ae"
-const API_IMG="https://image.tmdb.org/t/p/w300/"
+const API_IMG="https://image.tmdb.org/t/p/w500/"
 
 function Home(props) {
 
   let navigate=useNavigate()
     const[movie,setMovies]=useState([])
     const[load,setload]=useState(false)
+
+    //css for spinner
     const override = css`
   display: block;
   margin: 0 auto;
@@ -26,6 +28,7 @@ useEffect((props)=>{
     fetch(API_URL)
 },[])
 
+//fetching movie data
 const fetch= async()=>{
     try{
         const response=await axios.get(API_URL)
@@ -46,15 +49,15 @@ console.log(error);
       {load ? (
         <div>
           {movie.map((val,i)=>{
-        return   <div key={val.id} className='col-3 p-1  d-inline-block justify-content-md-evenly' >
+        return   <div key={val.id} className='col-3 p-1  d-inline-block justify-content-evenly' >
         <div className="card" >
-      <img src={API_IMG+val.poster_path} className="card-img-top " alt="poster"/>
-      <div className="card-body" >
-        <p className="card-title text-monospace" >{val.title}</p>
-       <button className='btn btn-primary' onClick={()=>{
-         navigate(`${val.id}`)
-       }}>More</button>
-      </div>
+      <img src={API_IMG+val.poster_path} onClick={()=>{
+         navigate(`${val.id}`)  
+       }}className="card-img-top " alt="poster"/>
+      {/* <div className="card-body"  >
+        <p className="card-title text-monospace"  >{val.title}</p>
+       <button className='btn btn-primary'   >More</button>
+      </div> */}
     </div>
     </div>
       })}  

@@ -8,15 +8,11 @@ import ErrorPage from './components/ErrorPage';
 
 
 function App() {
-
-  
-  return <BrowserRouter>
+ return <BrowserRouter>
 
   <Routes>
     <Route path="/" element={<Home/>}/>
-    
-      <Route path=":id" element={<MoreInfo/>} />
- 
+    <Route path=":id" element={<MoreInfo/>} />  
     <Route path="/header" element={<Header/>}/>
     <Route path="*" element={<ErrorPage/>}/>
   </Routes>
