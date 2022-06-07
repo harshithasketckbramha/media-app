@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Home from './Home';
+// import "../App.css"
 import YouTube from 'react-youtube';
 import React, { useEffect, useState } from 'react'
 import { css } from "@emotion/react";
@@ -9,6 +10,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import StarIcon from '@mui/icons-material/Star';
 
 const style = {
   position: 'absolute',
@@ -45,17 +47,17 @@ function MoreInfo() {
   //spinner css
   const override = css`
   display:block;
-  margin: 0 auto;
+  margin:0 auto;
 `;
 //css for youtube
 const opts = {
-  height: '320',
+  height: '350',
   width: '330',
 };
 
   
 // console.log(id);
-// console.log(post);
+console.log(post);
 
 useEffect(()=>{
 fetchPost()
@@ -97,26 +99,34 @@ video.forEach((val,i)=>{
   }
 })
 console.log(newVideo);
-  // console.log(a);
-//  console.log(post);
-// console.log(video.key);
+
  return (
-   <div>
+   <div className='hello'>
      {data ? (
-       <div>
- <div className='card mb-2 'style={{maxHeight:"00%"}} >
+       <div >
+        {/* <div class="card bg-dark text-white">
+  <img src={API_IMG+post.poster_path} class="card-img" style={{height:"27.7rem"}}/>
+  <div class="card-img-overlay col-5 mb-4">
+    <h5 class="card-title bg-black">{post.title}</h5>
+    <p class="card-text bg-black">{post.overview}</p>
+ */}
+ <div className='card hello bg-black'style={{maxHeight:"100%"}} >
        <div className="row no-gutters">
-       <div className="col-md-4">
-       <img src={API_IMG+post.poster_path}/>
+       <div className="col-md-4 ">
+       <img src={API_IMG+post.poster_path} className="col-12"/>
        </div>
-       <div className="col-md-6">
-       <div className='card-body'>
-       <h3 className="card-title">Title:{post.title}</h3>
-       <h6 className="card-text">{post.tagline}</h6>
-       <h4 className="card-text">Rating: {post.vote_average}</h4>
+       <div className="col-md-8">
+       <div className='card-body text-white'>
+       <h2 className="card-title">Title:{post.title}</h2>
+       <h4 className="card-text">{post.tagline}</h4>
+       <h4 className="card-text try"> <StarIcon/>{post.vote_average}</h4>
        <h4>overview</h4>
-       <p className="card-text">{post.overview}</p>
-       <Button onClick={handleOpen} color="primary" variant='contained'>Watch Trailer</Button>
+       <p className="card-text">{post.overview}</p><Button onClick={handleOpen} color="primary" variant='contained'>Watch Trailer</Button>
+<button className='btn btn-success m-2' onClick={()=>{
+       navigate("/")
+       }}>Back</button> </div>
+</div>
+
        {open ? (
     <div>
       
@@ -131,15 +141,13 @@ console.log(newVideo);
   )
 :""}
        
- <button className='btn btn-success m-2' onClick={()=>{
-       navigate("/")
-       }}>Back</button>
-       </div>
-       </div>
-       </div>
-       </div>
 
-   </div>
+       </div>
+       </div>
+        </div>
+    //    </div>
+
+    // </div>
      ):<ClipLoader color="D0021B" loading={post}  css={override} size={50} />}
        </div>
  )

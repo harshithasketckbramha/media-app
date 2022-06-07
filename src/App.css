@@ -1,6 +1,53 @@
-.App {
+
+
+@media screen and (max-width:600px) {
+  body{
+    background-color: black !important;
+  }
+  .new {
+    flex: 0 0 auto;
+    width: 50% !important;
+}
+}
+
+.hello{
+  height: 100vh;
+}
+
+.try{
+  background-color: rgb(111, 46, 30);
+  max-width: fit-content;
+}
+/* @media screen and (max-width:450px) {
+  h3 {
+    display:inline-block !important;
+  
+    font-size: 1.2em  !important;
+}
+h4{
+  display: block;
+  margin-block-start: 0.5em !important;
+  margin-block-end: 0.5em !important;
+  margin-bottom: 0.5rem;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
+p {
+  display:inline-block !important;
+  height: 200px !important;
+  width: 240px !important;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+} */
+
+/* .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -35,5 +82,5 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
