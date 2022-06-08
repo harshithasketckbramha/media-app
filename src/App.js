@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import MoreInfo from './components/MoreInfo';
 import ErrorPage from './components/ErrorPage';
+import Login from './components/Login';
 
 
 
@@ -15,7 +16,8 @@ function App() {
     <Route path="/" element={<Home/>}/>
     <Route path=":id" element={<MoreInfo/>} />  
     <Route path="/header" element={<Header/>}/>
-   <Route path="*" element={<ErrorPage/>}/>
+    <Route path="/login" element={<Login/>}/>
+    <Route path="*" element={<ErrorPage/>}/>
   </Routes>
   </BrowserRouter>
 }

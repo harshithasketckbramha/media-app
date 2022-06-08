@@ -41,6 +41,9 @@ function MoreInfo() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //loading
+  const [loading,setloading]=useState(false)
+
   //to get params useparams and use it where required
   let {id}=useParams()
 
@@ -83,7 +86,7 @@ videoFetch()
       const response=await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=84bf934f6f348e09a8de2b9b556c09ae`)
       // console.log(response.data.results[1]);
       setvideos(response.data.results)
-      
+      setloading(true)
 
     }catch(error){
       console.log(error);
@@ -127,7 +130,12 @@ console.log(newVideo);
       <Modal
         open={open}>
         <Box sx={style}>
-        <YouTube videoId={newVideo[0].key} opts={opts}/>
+          {loading ? <YouTube videoId={newVideo[0].key} opts={opts}/>:
+          <ClipLoader loading={loading} color="FFFFFF" size={20}/>
+          }
+        
+        
+        
           <Button onClick={handleClose} variant="contained" color="secondary">close</Button>
         </Box>
       </Modal>
@@ -139,9 +147,6 @@ console.log(newVideo);
        </div>
        </div>
         </div>
-    //    </div>
-
-    // </div>
      ):<ClipLoader color="D0021B" loading={post}  css={override} size={50} />}
        </div>
  )

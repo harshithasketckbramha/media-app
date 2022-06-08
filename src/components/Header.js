@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import { Button } from 'bootstrap';
 
 const Search = styled('div')(({ theme }) => ({
@@ -57,6 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Header(props) {
   const {movie,setMovies}=props
+  const navigate=useNavigate()
 const[data,setdata]=useState("")
 
 //to search movies
@@ -106,6 +108,9 @@ const[data,setdata]=useState("")
          name="data"
          value={data}
          >Search</Button>
+          <Button style={{color:"white"}} onClick={()=>{
+            navigate("/login")
+          }}>Login</Button>
         </Toolbar>
       </AppBar>
     </Box>

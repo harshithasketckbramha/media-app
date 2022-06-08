@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { css } from "@emotion/react";
 import Header from './Header'
-import Movies from './Movies'
 import ClipLoader from "react-spinners/ClipLoader";
-// import { FormControl,Button } from 'react-bootstrap';
 
 
 const API_URL="https://api.themoviedb.org/3/movie/popular?api_key=84bf934f6f348e09a8de2b9b556c09ae"
@@ -54,10 +52,6 @@ console.log(error);
       <img src={API_IMG+val.poster_path} onClick={()=>{
          navigate(`${val.id}`)  
        }}className="card-img-top " alt="poster"/>
-      {/* <div className="card-body"  >
-        <p className="card-title text-monospace"  >{val.title}</p>
-       <button className='btn btn-primary'   >More</button>
-      </div> */}
     </div>
     </div>
       })}  
