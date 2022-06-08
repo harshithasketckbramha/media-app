@@ -104,16 +104,10 @@ console.log(newVideo);
    <div className='hello'>
      {data ? (
        <div >
-        {/* <div class="card bg-dark text-white">
-  <img src={API_IMG+post.poster_path} class="card-img" style={{height:"27.7rem"}}/>
-  <div class="card-img-overlay col-5 mb-4">
-    <h5 class="card-title bg-black">{post.title}</h5>
-    <p class="card-text bg-black">{post.overview}</p>
- */}
  <div className='card hello bg-black'style={{maxHeight:"100%"}} >
        <div className="row no-gutters">
        <div className="col-md-4 ">
-       <img src={API_IMG+post.poster_path} className="col-12"/>
+      <img src={API_IMG+post.poster_path} className="col-12 image"/>
        </div>
        <div className="col-md-8">
        <div className='card-body text-white'>
@@ -125,7 +119,7 @@ console.log(newVideo);
 <button className='btn btn-success m-2' onClick={()=>{
        navigate("/")
        }}>Back</button> </div>
-</div>
+</div> 
 
        {open ? (
     <div>

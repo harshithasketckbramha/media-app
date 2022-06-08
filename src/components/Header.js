@@ -60,10 +60,13 @@ export default function Header(props) {
 const[data,setdata]=useState("")
 
 //to search movies
-  const handleChange=async(e)=>{
+  const handleChange=(e)=>{
   //takes value 
    setdata(e.target.value)
    console.log(data);
+  }
+  
+  const searchData=async(e)=>{
    try{
     const resp=await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=84bf934f6f348e09a8de2b9b556c09ae&language=en-US&query=${data}&page=1&include_adult=false`)
     setMovies(resp.data.results)
@@ -95,11 +98,14 @@ const[data,setdata]=useState("")
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
               onChange={handleChange}
-              name="data"
-              value={data}
+             
             />
           </Search>
-         
+         <Button variant="contained"
+         onClick={searchData}
+         name="data"
+         value={data}
+         >Search</Button>
         </Toolbar>
       </AppBar>
     </Box>

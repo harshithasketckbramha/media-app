@@ -18,6 +18,10 @@
   background-color: rgb(111, 46, 30);
   max-width: fit-content;
 }
+
+.image{
+  height: 100vh;
+}
 /* @media screen and (max-width:450px) {
   h3 {
     display:inline-block !important;
