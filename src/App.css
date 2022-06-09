@@ -26,9 +26,9 @@
 
 .disp{
   height: 100vh;
-  background-image: linear-gradient(black,black ,white);
-  background-image: url("https://images.firstpost.com/wp-content/uploads/2018/10/Netflix-and-Chill-1280.jpg");
-  background-repeat: no-repeat;
+  background-image: linear-gradient(red,black ,white);
+  /* background-image: url("https://images.firstpost.com/wp-content/uploads/2018/10/Netflix-and-Chill-1280.jpg");
+  background-repeat: no-repeat; */
   
 }
 
