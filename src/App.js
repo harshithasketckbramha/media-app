@@ -26,23 +26,24 @@ useEffect(()=>{
 
 
   <Routes>
-    {!islogin ? (
-      <>
+    {/* {!islogin ? ( */}
+      {/* <>
      <Route path="/" element={<Welcome/>}/>
      <Route path="/login" element={<Login/>}/>
      <Route path="*" element={<ErrorPage/>}/>
       </>
     ):
 
-    (
+    ( */}
       <> 
       <Route path="/" element={<Welcome/>}/>
+      <Route path="/login" element={<Login/>}/>
       <Route path="/home" element={<Home/>}/>
     <Route path=":id" element={<MoreInfo/>} />  
     <Route path="/header" element={<Header/>}/>
     {/* <Route path="*" element={<ErrorPage/>}/> */}
       </>
-    )}
+    {/* )} */}
  
    
   </Routes>

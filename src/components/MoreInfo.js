@@ -63,6 +63,15 @@ const opts = {
 // console.log(id);
 console.log(post);
 
+//fetch access
+useEffect(()=>{
+  const check=localStorage.getItem("users")
+  console.log(check)
+  if(check === null){
+    navigate('/login')
+  }
+},[])
+
 useEffect(()=>{
 fetchPost()
 videoFetch()

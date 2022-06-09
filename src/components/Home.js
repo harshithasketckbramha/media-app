@@ -15,6 +15,15 @@ function Home(props) {
     const[movie,setMovies]=useState([])
     const[load,setload]=useState(false)
 
+
+    useEffect(()=>{
+      const check=localStorage.getItem("users")
+      console.log(check)
+      if(check === null){
+        navigate('/login')
+      }
+    },[])
+
     //css for spinner
     const override = css`
   display: block;

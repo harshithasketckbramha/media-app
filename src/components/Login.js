@@ -59,13 +59,13 @@ if(isnameValid && isemailValid){
       setToken(response.data.request_token)
       const Token_Key=response.data.request_token
       localStorage.setItem("users",Token_Key)
-    
+      navigate("/home")
       
     }catch(error){
       console.log(error);
     }
   }
-  navigate("/home")
+  
  fetchToken()
 }
 }
@@ -143,6 +143,12 @@ null}
       <Button 
      style={{backgroundColor:"black"}}
        variant='contained'type="submit" >Submit</Button>
+       <Button 
+     style={{backgroundColor:"black",marginTop:"5px"}}
+    
+       variant='contained' onClick={()=>{
+         navigate("/")
+       }}>Back</Button>
       </form>
     </div>
     </div>
