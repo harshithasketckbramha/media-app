@@ -46,6 +46,7 @@ function MoreInfo() {
 
   //to get params useparams and use it where required
   let {id}=useParams()
+  console.log(id);
 
   //spinner css
   const override = css`
@@ -120,7 +121,7 @@ console.log(newVideo);
        <h4>overview</h4>
        <p className="card-text">{post.overview}</p><Button onClick={handleOpen} color="primary" variant='contained'>Watch Trailer</Button>
 <button className='btn btn-success m-2' onClick={()=>{
-       navigate("/")
+       navigate("/home")
        }}>Back</button> </div>
 </div> 
 

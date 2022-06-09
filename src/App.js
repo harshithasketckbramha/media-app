@@ -6,18 +6,45 @@ import Header from './components/Header';
 import MoreInfo from './components/MoreInfo';
 import ErrorPage from './components/ErrorPage';
 import Login from './components/Login';
+import { useEffect, useState } from 'react';
+import Welcome from './components/Welcome';
 
 
 
 function App() {
+  const[islogin,setisLogin]=useState(null)
+
+useEffect(()=>{
+  const access=localStorage.getItem("users");
+  console.log(access);
+  access && JSON.stringify(access)? setisLogin(true):setisLogin(false)
+},[islogin])
+
+
+
  return <BrowserRouter>
 
+
   <Routes>
-    <Route path="/" element={<Home/>}/>
+    {!islogin ? (
+      <>
+     <Route path="/" element={<Welcome/>}/>
+     <Route path="/login" element={<Login/>}/>
+     <Route path="*" element={<ErrorPage/>}/>
+      </>
+    ):
+
+    (
+      <> 
+      <Route path="/" element={<Welcome/>}/>
+      <Route path="/home" element={<Home/>}/>
     <Route path=":id" element={<MoreInfo/>} />  
     <Route path="/header" element={<Header/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="*" element={<ErrorPage/>}/>
+    {/* <Route path="*" element={<ErrorPage/>}/> */}
+      </>
+    )}
+ 
+   
   </Routes>
   </BrowserRouter>
 }

@@ -50,7 +50,7 @@ console.log(error);
         return   <div key={val.id} className='col-3 p-1 new d-inline-block justify-content-evenly' >
         <div className="card" >
       <img src={API_IMG+val.poster_path} onClick={()=>{
-         navigate(`${val.id}`)  
+         navigate(`/${val.id}`)  
        }}className="card-img-top " alt="poster"/>
     </div>
     </div>

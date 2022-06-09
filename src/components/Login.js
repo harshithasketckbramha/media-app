@@ -1,8 +1,11 @@
 import { Button, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import "../App.css"
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const validationSchema = yup.object({
@@ -18,28 +21,71 @@ const validationSchema = yup.object({
    
 });
 function Login() {
+  const[users,setusers]=useState([])
+  const[token,setToken]=useState([])
+  const[islogin,setlogin]=useState(false)
+  
 
-  const formik = useFormik({
-    initialValues: {
+const navigate=useNavigate()
+ 
+const fetchToken=async()=>{
+  try{
+    const response=await axios.get("https://api.themoviedb.org/3/authentication/token/new?api_key=84bf934f6f348e09a8de2b9b556c09ae")
+    console.log(response.data);
+    setToken(response.data.request_token)
+    const Token_Key=response.data.request_token
+    localStorage.setItem("users",Token_Key)
+    
+  }catch(error){
+    console.log(error);
+  }
+}
+console.log(token);
+
+// useEffect(()=>{
+//   const tok=localStorage.getItem("users")
+//   console.log(tok);
+// },[users])
+
+const formik = useFormik({
+  initialValues: {
       name: "",
       email: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert("Successfully logged in")
+      
+      console.log(values);
+     setusers([...users,values])
+     fetchToken()
+     navigate('/')
+     formik.resetForm({
+       name:"",
+       email:""
+     })
+     setlogin(true)
     },
+    
   });
+  
+console.log(users);
+
+  console.log(users);
   return (
-    <div className='disp py-5'>
-    <div className='card col-4 m-auto justify-content-center'>
-      <form  className=" d-grid justify-content-center m-5 "
+    <div className='disp py-5' >
+    <div className='card col-4 m-auto justify-content-center mus'>
+      <form  className=" d-grid justify-content-center m-5  "
+      
       onSubmit={formik.handleSubmit}>
         <h3>Sign-In</h3>
+
+      
       <TextField
 
-      className='m-1 '
+      className='m-1 inp '
+      style={{width:"22vw"}}
       variant='outlined'
-      required
       label="Name"
       name="name"
       value={formik.values.name}
@@ -49,9 +95,7 @@ function Login() {
     />
 
 <TextField
-// style={{width:"20vw"}}
-      variant='outlined'
-      required
+      variant='outlined' 
       className='m-1'   
       label="email"
       name="email"

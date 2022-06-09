@@ -1,4 +1,4 @@
-import  React, { useState } from 'react';
+import  React, { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button } from '@mui/material';
+import { Button, ButtonBase } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 // import { Button } from 'bootstrap';
@@ -60,7 +60,20 @@ export default function Header(props) {
   const {movie,setMovies}=props
   const navigate=useNavigate()
 const[data,setdata]=useState("")
+const[log,setlog]=useState(null)
 
+//accessing from localstorage
+useEffect(()=>{
+  const logs=localStorage.getItem("users")
+  console.log(logs);
+  logs ? setlog(true):setlog(false)
+})
+//remove token
+const removeData=()=>{
+  localStorage.removeItem("users")
+  setlog(false)
+  navigate("/")
+}
 //to search movies
   const handleChange=(e)=>{
   //takes value 
@@ -92,6 +105,15 @@ const[data,setdata]=useState("")
           >
             NETFLIX
           </Typography>
+         
+         {log ? (
+           <>
+            <Button 
+            size='large'
+            style={{color:"white"}}
+            onClick={()=>{
+            navigate("/home")
+          }}>Home</Button>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -108,9 +130,16 @@ const[data,setdata]=useState("")
          name="data"
          value={data}
          >Search</Button>
+         <Button onClick={removeData} style={{color:"white"}}
+          >Logout</Button></>):(
+           <>
+           
           <Button style={{color:"white"}} onClick={()=>{
             navigate("/login")
-          }}>Login</Button>
+          }}>Login</Button>  
+          </>
+        )
+        }
         </Toolbar>
       </AppBar>
     </Box>
