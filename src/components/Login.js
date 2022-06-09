@@ -60,11 +60,12 @@ const formik = useFormik({
      setusers([...users,values])
      fetchToken()
      navigate('/')
+     setlogin(true)
      formik.resetForm({
        name:"",
        email:""
      })
-     setlogin(true)
+     
     },
     
   });
