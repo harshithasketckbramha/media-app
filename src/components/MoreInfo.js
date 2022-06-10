@@ -53,6 +53,7 @@ function MoreInfo() {
   display:block;
   margin:0 auto;
 `;
+
 //css for youtube
 const opts = {
   height: '350',

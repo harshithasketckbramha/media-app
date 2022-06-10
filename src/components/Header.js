@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Button, ButtonBase } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import SideNav from './SideNav/SideNav';
 // import { Button } from 'bootstrap';
 
 const Search = styled('div')(({ theme }) => ({
@@ -108,6 +109,7 @@ const removeData=()=>{
          
          {log ? (
            <>
+           <SideNav movie={movie} setMovies={setMovies}/>
             <Button 
             size='large'
             style={{color:"white"}}

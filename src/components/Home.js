@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { css } from "@emotion/react";
 import Header from './Header'
 import ClipLoader from "react-spinners/ClipLoader";
+import StarIcon from '@mui/icons-material/Star';
+import SideNav from './SideNav/SideNav';
 
 
 const API_URL="https://api.themoviedb.org/3/movie/popular?api_key=84bf934f6f348e09a8de2b9b556c09ae"
@@ -48,11 +50,16 @@ console.log(error);
     }
 }
 
+console.log(movie);
+
+
 
 
   return (
     <div>
       <Header movie={movie} setMovies={setMovies}/>
+      {/* <SideNav movie={movie} setMovies={setMovies} /> */}
+
       {load ? (
         <div>
           {movie.map((val,i)=>{
@@ -61,6 +68,7 @@ console.log(error);
       <img src={API_IMG+val.poster_path} onClick={()=>{
          navigate(`/${val.id}`)  
        }}className="card-img-top " alt="poster"/>
+       <h5 className=' card-img-overlay bg-dark text-white do' ><StarIcon/>{val.vote_average}</h5>
     </div>
     </div>
       })}  

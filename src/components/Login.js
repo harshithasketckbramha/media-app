@@ -44,6 +44,19 @@ setusers({
   [e.target.name]:e.target.value
 })
 }
+const fetchToken=async()=>{
+  try{
+    const response=await axios.get("https://api.themoviedb.org/3/authentication/token/new?api_key=84bf934f6f348e09a8de2b9b556c09ae")
+    console.log(response.data);
+    setToken(response.data.request_token)
+    const Token_Key=response.data.request_token
+    localStorage.setItem("users",Token_Key)
+    navigate("/home")
+    
+  }catch(error){
+    console.log(error);
+  }
+}
 
 const handleSubmit=(e)=>{
 e.preventDefault()
@@ -52,19 +65,7 @@ const isnameValid=validateName(users.name)
 const isemailValid=validateEmail(users.email)
 if(isnameValid && isemailValid){
   // alert("success")
-  const fetchToken=async()=>{
-    try{
-      const response=await axios.get("https://api.themoviedb.org/3/authentication/token/new?api_key=84bf934f6f348e09a8de2b9b556c09ae")
-      console.log(response.data);
-      setToken(response.data.request_token)
-      const Token_Key=response.data.request_token
-      localStorage.setItem("users",Token_Key)
-      navigate("/home")
-      
-    }catch(error){
-      console.log(error);
-    }
-  }
+ 
   
  fetchToken()
 }
@@ -108,7 +109,7 @@ console.log(users);
   console.log(users);
   return (
     <div className='disp py-5' >
-    <div className='card col-4 m-auto justify-content-center mus'>
+    <div className='card col-4 m-auto justify-content-center basic'>
       <form  className=" d-grid justify-content-center m-5  "
       
       onSubmit={handleSubmit}
@@ -118,7 +119,7 @@ console.log(users);
       
       <TextField
 
-      className='m-1 inp '
+      className='m-1 txt_field '
       style={{width:"22vw"}}
       variant='outlined'
       label="Name"
@@ -129,14 +130,14 @@ console.log(users);
 {!nameVal ? <span style={{color:"red",fontsize:"px"}}>{nameErr}</span>:
 null}
 <TextField
+  style={{width:"22vw"}}
       variant='outlined' 
-      className='m-1'   
+      className='m-1 txt_field'   
       label="email"
       name="email"
       value={users.email}
       onChange={handleChange}
-      // error={formik.touched.email && Boolean(formik.errors.email)}
-      // helperText={formik.touched.email && formik.errors.email}
+      
     />
 {!emailVal ? <span style={{color:"red",fontsize:"px"}}>{emailErr}</span>:
 null}
