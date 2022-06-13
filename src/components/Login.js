@@ -7,20 +7,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-
-
-// const validationSchema = yup.object({
-//   name: yup.string()
-//   .min(4, 'Too Short!')
-//   .matches(/^[A-Za-z]+$/,"Cant use numbers")
-//   .max(25, 'Too Long!')
-//   .required('Required'),
-//   email: yup
-//     .string('Enter your email')
-//     .email('Enter a valid email')
-//     .required('Email is required'),
-   
-// });
 function Login() {
   const[users,setusers]=useState({
     name:"",
@@ -36,8 +22,6 @@ function Login() {
  
 
 console.log(token);
-
-
 const handleChange=(e)=>{
 setusers({
   ...users,
@@ -64,9 +48,6 @@ console.log(users);
 const isnameValid=validateName(users.name)
 const isemailValid=validateEmail(users.email)
 if(isnameValid && isemailValid){
-  // alert("success")
- 
-  
  fetchToken()
 }
 }
@@ -103,10 +84,6 @@ setemailErr("Enter proper Email")
 }
 }
 
-  
-console.log(users);
-
-  console.log(users);
   return (
     <div className='disp py-5' >
     <div className='card col-4 m-auto justify-content-center basic'>
@@ -115,10 +92,7 @@ console.log(users);
       onSubmit={handleSubmit}
       >
         <h3>Sign-In</h3>
-
-      
       <TextField
-
       className='m-1 txt_field '
       style={{width:"22vw"}}
       variant='outlined'
@@ -127,10 +101,10 @@ console.log(users);
       value={users.name}
       onChange={handleChange}
       />
-{!nameVal ? <span style={{color:"red",fontsize:"px"}}>{nameErr}</span>:
-null}
-<TextField
-  style={{width:"22vw"}}
+    {!nameVal ? <span style={{color:"red",fontsize:"px"}}>{nameErr}</span>:
+    null}
+    <TextField
+      style={{width:"22vw"}}
       variant='outlined' 
       className='m-1 txt_field'   
       label="email"

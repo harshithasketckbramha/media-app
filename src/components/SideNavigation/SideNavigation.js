@@ -11,12 +11,19 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 function SideNavigation(props) {
 const {movie,setMovies}=props
 
-    const highLow=()=>{
+
+const NOW_PLAYING_API="https://api.themoviedb.org/3/movie/now_playing?api_key=84bf934f6f348e09a8de2b9b556c09ae&page=1"
+const LATEST_API="https://api.themoviedb.org/3/movie/latest?api_key=84bf934f6f348e09a8de2b9b556c09ae&language=en-US"
+const POPULAR_API="https://api.themoviedb.org/3/movie/popular?api_key=84bf934f6f348e09a8de2b9b556c09ae&language=en-US&page=1"
+const TOP_RATED_API="https://api.themoviedb.org/3/movie/top_rated?api_key=84bf934f6f348e09a8de2b9b556c09ae&page=1"
+const UPCOMING_API="https://api.themoviedb.org/3/movie/upcoming?api_key=84bf934f6f348e09a8de2b9b556c09ae&page=1"
+
+//sorting movie list by rating(from high rating to low rating)
+const highLow=()=>{
         const a=movie.sort((a,b)=>{
           return b.vote_average - a.vote_average
         })
            console.log(a);
-        
            const ab=movie.map((val,i)=>{
              return val
            })
@@ -24,6 +31,7 @@ const {movie,setMovies}=props
            setMovies(ab)
         }
 
+//sorting movie list by rating(from low rating to high rating)
         const Lowhigh=()=>{
             const b=movie.sort((a,b)=>{
               return a.vote_average - b.vote_average
@@ -37,9 +45,10 @@ const {movie,setMovies}=props
                setMovies(ba)
           }
 
+          //api call to get now playing movies
         const NowPlaying=async()=>{
             try{
-                const res=await axios.get("https://api.themoviedb.org/3/movie/now_playing?api_key=84bf934f6f348e09a8de2b9b556c09ae&page=1")
+                const res=await axios.get(NOW_PLAYING_API)
                 console.log(res.data.results);
                 setMovies(res.data.results)
             }catch(error){
@@ -48,9 +57,10 @@ const {movie,setMovies}=props
 
         }
 
+        //api call to get latest movies
         const latest=async()=>{
             try{
-                const res=await axios.get("https://api.themoviedb.org/3/movie/latest?api_key=84bf934f6f348e09a8de2b9b556c09ae&language=en-US")
+                const res=await axios.get(LATEST_API)
                 console.log(res.data);
                 setMovies([res.data])
                 console.log(movie);
@@ -59,9 +69,10 @@ const {movie,setMovies}=props
             }
         }
 
+        //api function call to get popular movies
         const Popular=async()=>{
             try{
-                const resp=await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=84bf934f6f348e09a8de2b9b556c09ae&language=en-US&page=1")
+                const resp=await axios.get(POPULAR_API)
                 console.log(resp.data.results);
                 setMovies(resp.data.results)
             }catch(error){
@@ -69,9 +80,11 @@ const {movie,setMovies}=props
             }
         }
 
+
+    //api function call to get top rated movies
         const TopRated=async()=>{
             try{
-                const resp=await axios.get("https://api.themoviedb.org/3/movie/top_rated?api_key=84bf934f6f348e09a8de2b9b556c09ae&page=1")
+                const resp=await axios.get(TOP_RATED_API)
                 console.log(resp.data.results);
                 setMovies(resp.data.results)
             }catch(error){
@@ -79,19 +92,21 @@ const {movie,setMovies}=props
             }
         }
 
+        //api call to get upcoming movies
         const Upcoming=async()=>{
             try{
-                const resp=await axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=84bf934f6f348e09a8de2b9b556c09ae&page=1")
+                const resp=await axios.get(UPCOMING_API)
                 console.log(resp.data.results);
                 setMovies(resp.data.results)
             }catch(error){
                 console.log(error);
             }
         }
+
   return (
       <div>
    <Dropdown >
-      <Dropdown.Toggle style={{backgroundColor:"black"}} id="dropdown-basic">
+      <Dropdown.Toggle style={{backgroundColor:"black",border:"black" }} id="dropdown-basic">
         Categories
       </Dropdown.Toggle>
 
