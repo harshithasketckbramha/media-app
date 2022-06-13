@@ -22,12 +22,12 @@
 .do{
   max-height: fit-content;
   max-width: fit-content;
-
-  
 }
+
+
 @media screen and (max-width:600px) {
   body{
-    background-color: black !important;
+    /* background-color: black !important; */
   }
   .new {
     flex: 0 0 auto;
@@ -38,6 +38,7 @@
 .disp{
   height: 100vh;
   background-image: linear-gradient(red,black ,white);
+  ;
 
   
 }

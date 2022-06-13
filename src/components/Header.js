@@ -110,12 +110,12 @@ const removeData=()=>{
          {log ? (
            <>
            <SideNav movie={movie} setMovies={setMovies}/>
-            <Button 
+            {/* <Button 
             size='large'
             style={{color:"white"}}
             onClick={()=>{
             navigate("/home")
-          }}>Home</Button>
+          }}>Home</Button> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
