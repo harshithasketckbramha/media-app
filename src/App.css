@@ -27,7 +27,7 @@
 
 @media screen and (max-width:600px) {
   body{
-    /* background-color: black !important; */
+    background-color: black !important;
   }
   .new {
     flex: 0 0 auto;
