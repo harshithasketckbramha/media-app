@@ -12,6 +12,7 @@ import { Button, ButtonBase } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SideNav from './SideNav/SideNav';
+import SideNavigation from './SideNavigation/SideNavigation';
 // import { Button } from 'bootstrap';
 
 const Search = styled('div')(({ theme }) => ({
@@ -109,7 +110,8 @@ const removeData=()=>{
          
          {log ? (
            <>
-           <SideNav movie={movie} setMovies={setMovies}/>
+           {/* <SideNav movie={movie} setMovies={setMovies}/> */}
+           <SideNavigation movie={movie} setMovies={setMovies}/>
             {/* <Button 
             size='large'
             style={{color:"white"}}

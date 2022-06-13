@@ -10,6 +10,7 @@ import Login from './components/Login';
 import { useEffect, useState } from 'react';
 import Welcome from './components/Welcome';
 import SideNav from './components/SideNav/SideNav';
+import SideNavigation from './components/SideNavigation/SideNavigation';
 
 
 
@@ -38,7 +39,7 @@ useEffect(()=>{
       <Route path=":id" element={<MoreInfo/>} />  
       <Route path="/header" element={<Header/>}/>
       <Route path="/sideNav" element={<SideNav/>}/>
-
+      <Route path="/sideNavigation" element={<SideNavigation/>}/>
       <Route path="*" element={<ErrorPage/>}/>
       </>
    

@@ -52,22 +52,20 @@ console.log(error);
 
 console.log(movie);
 
-
-
-
   return (
     <div>
       <Header movie={movie} setMovies={setMovies}/>
-      {/* <SideNav movie={movie} setMovies={setMovies} /> */}
+      
 
       {load ? (
         <div>
           {movie.map((val,i)=>{
         return   <div key={val.id} className='col-3 p-1 new d-inline-block justify-content-evenly' >
         <div className="card" >
-      <img src={API_IMG+val.poster_path} onClick={()=>{
+      <img src={API_IMG+val.poster_path}  onClick={()=>{
          navigate(`/${val.id}`)  
-       }}className="card-img-top " alt="poster"/>
+       }}className="card-img-top " alt="No Poster Available please click on the card for more details"/>
+
        <h5 className=' card-img-overlay bg-dark text-white do' ><StarIcon/>{val.vote_average}</h5>
     </div>
     </div>
