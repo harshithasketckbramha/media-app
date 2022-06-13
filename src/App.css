@@ -25,15 +25,7 @@
 }
 
 
-@media screen and (max-width:600px) {
-  body{
-    /* background-color: black !important; */
-  }
-  .new {
-    flex: 0 0 auto;
-    width: 50% !important;
-}
-}
+
 
 .disp{
   height: 100vh;
@@ -67,3 +59,12 @@
   }
 }
 
+@media screen and (max-width:600px) {
+  body{
+    background-color: black !important;
+  }
+  .new {
+    flex: 0 0 auto;
+    width: 50% !important;
+}
+}
